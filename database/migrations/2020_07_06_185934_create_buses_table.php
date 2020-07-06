@@ -14,7 +14,11 @@ class CreateBusesTable extends Migration
     public function up()
     {
         Schema::create('buses', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->string('number_letter');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -14,7 +14,19 @@ class CreateProgramsTable extends Migration
     public function up()
     {
         Schema::create('programs', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->integer('hotel_id')->unsigned()->index();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade'); 
+            $table->integer('travel_id')->unsigned()->index();
+            $table->foreign('travel_id')->references('id')->on('travel')->onDelete('cascade');
+            
+            $table->string('type');
+            $table->double('cost');
+            
             $table->timestamps();
         });
     }

@@ -14,8 +14,14 @@ class CreatePermeationsTable extends Migration
     public function up()
     {
         Schema::create('permeations', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
             $table->string('name');
+            $table->string('Rank');
+
+        
+            
             $table->timestamps();
         });
     }

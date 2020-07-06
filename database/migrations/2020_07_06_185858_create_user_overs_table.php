@@ -14,7 +14,14 @@ class CreateUserOversTable extends Migration
     public function up()
     {
         Schema::create('user_overs', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->integer('over_salary_id')->unsigned()->index();
+            $table->foreign('over_salary_id')->references('id')->on('over_salaries')->onDelete('cascade');
+            $table->integer('status');
             $table->timestamps();
         });
     }

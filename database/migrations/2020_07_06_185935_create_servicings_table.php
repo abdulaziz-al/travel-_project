@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportsTable extends Migration
+class CreateServicingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('servicings', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
             $table->integer('user_job_id')->unsigned()->index();
             $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
-            $table->string('name');
-            $table->text('text');
-            $table->string('type');
+            $table->integer('store_id')->unsigned()->index();
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->integer('bus_id')->unsigned()->index();
+            $table->foreign('bus_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->double('price');
             $table->integer('status');
+            
             $table->timestamps();
         });
     }
@@ -34,6 +37,6 @@ class CreateReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('servicings');
     }
 }

@@ -14,7 +14,13 @@ class CreateOverSalariesTable extends Migration
     public function up()
     {
         Schema::create('over_salaries', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->string('name');
+            $table->double('percentage');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

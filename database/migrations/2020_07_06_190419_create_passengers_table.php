@@ -14,7 +14,21 @@ class CreatePassengersTable extends Migration
     public function up()
     {
         Schema::create('passengers', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('travel_id')->unsigned()->index();
+            $table->foreign('travel_id')->references('id')->on('travel')->onDelete('cascade');
+            $table->integer('program_id')->unsigned()->index();
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
+            $table->integer('hotel_id')->unsigned()->index();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->string('full_name');
+            $table->string('marking');
+            $table->integer('status');
+            
+            
+            
             $table->timestamps();
         });
     }

@@ -17,7 +17,10 @@ class CreateJobsTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            
+            $table->string('name');
+            $table->double('price');
+            $table->string('start');
+            $table->string('end');
             $table->timestamps();
         });
     }

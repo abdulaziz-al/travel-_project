@@ -14,7 +14,19 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index()->nullable();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->integer('opration_id')->unsigned()->index()->nullable();
+            $table->foreign('opration_id')->references('id')->on('operations')->onDelete('cascade');
+            $table->integer('servicing_id')->unsigned()->index()->nullable();
+            $table->foreign('servicing_id')->references('id')->on('servicings')->onDelete('cascade');
+            $table->string('name');
+            $table->double('price');
+            $table->integer('status');
+            
             $table->timestamps();
         });
     }

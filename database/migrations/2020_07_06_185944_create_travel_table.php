@@ -14,7 +14,25 @@ class CreateTravelTable extends Migration
     public function up()
     {
         Schema::create('travel', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->integer('driver_id')->unsigned()->index();
+            $table->foreign('driver_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            
+            $table->string('from');
+            $table->string('to');
+            
+            $table->integer('passenger');
+            $table->string('start_time');
+
+            $table->string('driver_move');
+            $table->string('expected_time');
+            $table->text('text');
+            $table->integer('status');
+            
             $table->timestamps();
         });
     }
