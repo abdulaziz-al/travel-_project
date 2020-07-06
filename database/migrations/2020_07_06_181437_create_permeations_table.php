@@ -15,6 +15,7 @@ class CreatePermeationsTable extends Migration
     {
         Schema::create('permeations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
