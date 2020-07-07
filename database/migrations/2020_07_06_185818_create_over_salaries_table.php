@@ -19,8 +19,8 @@ class CreateOverSalariesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->double('percentage');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_job_id')->unsigned()->index();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
             $table->timestamps();
         });
     }
