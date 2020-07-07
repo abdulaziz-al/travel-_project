@@ -14,7 +14,16 @@ class CreateNotificationsTable extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->text('text');
+            $table->string('from');
+            $table->string('to');
+            $table->boolean('seen');
+            
             $table->timestamps();
         });
     }
