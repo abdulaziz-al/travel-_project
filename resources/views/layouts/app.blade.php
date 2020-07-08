@@ -10,17 +10,33 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet" />
-
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-    <!-- Styles -->
+    <link href="{{ asset('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+    <script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+    <script src="{{ asset('js/momentjs.js') }}" defer></script>
+    <script src="{{ asset('js/moment-with-locales.js') }}" defer></script>
+    <script src="{{ asset('js/moment-hijri.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap-hijri-datetimepicker.main.js') }}" defer></script>
+
+
+ 
+    <style>
+      body{
+        position: relative;
+      }
+    </style>
 </head>
 <body>
 
@@ -82,5 +98,35 @@
             @yield('content')
         </main>
     </div>
+
+
+    <script>
+        $("select").on("click" , function() {
+
+$(this).parent(".select-box").toggleClass("open");
+
+});
+
+$(document).mouseup(function (e)
+{
+var container = $(".select-box");
+
+if (container.has(e.target).length === 0)
+{
+    container.removeClass("open");
+}
+});
+
+
+$("select").on("change" , function() {
+
+var selection = $(this).find("option:selected").text(),
+  labelFor = $(this).attr("id"),
+  label = $("[for='" + labelFor + "']");
+
+label.find(".label-desc").html(selection);
+
+});
+      </script>
 </body>
 </html>
