@@ -17,6 +17,9 @@ class CreateStoresTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->integer('user_job_id')->unsigned()->index()->nullable();
+            $table->foreign('user_job_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            
             $table->string('name');
             $table->double('price');
             $table->integer('count');

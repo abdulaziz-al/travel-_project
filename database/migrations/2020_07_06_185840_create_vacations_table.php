@@ -26,9 +26,9 @@ class CreateVacationsTable extends Migration
             
             $table->integer('status');
             $table->integer('accepted_by')->unsigned()->index();
-            $table->foreign('accepted_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('accepted_by')->references('id')->on('user_jobs')->onDelete('cascade');
             $table->integer('seen_by')->unsigned()->index();
-            $table->foreign('seen_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('seen_by')->references('id')->on('user_jobs')->onDelete('cascade');
 
             
             $table->timestamps();

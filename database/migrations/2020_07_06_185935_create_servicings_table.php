@@ -22,7 +22,7 @@ class CreateServicingsTable extends Migration
             $table->integer('store_id')->unsigned()->index();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->integer('bus_id')->unsigned()->index();
-            $table->foreign('bus_id')->references('id')->on('user_jobs')->onDelete('cascade');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->double('price');
             $table->integer('status');
             
