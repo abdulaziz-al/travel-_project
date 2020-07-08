@@ -10,10 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-<<<<<<< HEAD
-    <script src="{{ asset('js/app.js') }}"  ></script>
-=======
->>>>>>> b66d9fecf80863d49167cca2e5482e9a4fd590c6
 
     <link href="{{ asset('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
