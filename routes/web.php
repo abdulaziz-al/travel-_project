@@ -19,3 +19,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/','HomeController@welcome');
+
+Route::post('/Addmember','AdminController@Addmember')->name('Addmember');
+//// for test fucntions day 1 HR functions 
+Route::post('/newJobs','AdminController@newJobs')->name('newJobs');
+Route::post('/overSalary','AdminController@overSalary')->name('overSalary');
+Route::post('/userOver','AdminController@userOver')->name('userOver');

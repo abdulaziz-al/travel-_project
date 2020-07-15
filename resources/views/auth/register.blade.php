@@ -4,11 +4,12 @@
 <div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-12">
+        
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('Addmember') }}" enctype="multipart/form-data">
                         @csrf
 
 
@@ -17,11 +18,13 @@
                         <div class="select-box">
                             <img src="search.png" class="imgg" alt="Avatar">
 
-                            <label for="select-box1" class="label select-box1"><span class="label-desc">إختر الوظيفة </span> </label>
-                            <select id="select-box1" class="select">
-                              <option value="Choice 1">محاسب</option>
-                              <option value="Choice 2">سكرتير</option>
-                              <option value="Choice 3">موارد بشرية</option>
+                            <label for="select-box1"  class="label select-box1"><span class="label-desc">إختر الوظيفة </span> </label>
+                            <select id="select-box1" name="selected" class="select">
+                                @foreach ($job as $jobs)
+                               
+                              <option value="{{$jobs->id}}">{{$jobs->price}} {{$jobs->name}}</option>
+                              @endforeach
+
                             </select>
                             
                           </div>
@@ -63,13 +66,13 @@
                             <div class="col-md-6 input-container">
                                 <img src="date.png" class="img" alt="Avatar">
 
-                                    <input type='text' class="form-control" id="hijri-date-input3" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
+                                    <input type='text' name="Exp" class="form-control" id="hijri-date-input3" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
                              
                                                         </div>
                             <div class="col-md-6 input-container">
                                 <img src="id.png" class="img" alt="Avatar">
 
-                                <input type="text" class="form-control" placeholder="رقم الهوية">
+                                <input type="text" name="NID" class="form-control" placeholder="رقم الهوية">
                             </div>
                         </div>
 
@@ -79,19 +82,15 @@
                             <div class="col-md-6">
                                 <img src="phone.png" class="img" alt="Avatar">
 
-                            <input type="text" class="form-control" placeholder="رقم الجوال">
+                            <input type="text" name="phone" class="form-control" placeholder="رقم الجوال">
                             </div>
                             <div class="col-md-6">
                                 <img src="password.png" class="img" alt="Avatar">
 
                                 
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="الرقم السري" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control" name="password" placeholder="الرقم السري" required autocomplete="new-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                               
                             </div>
                         </div>
 
