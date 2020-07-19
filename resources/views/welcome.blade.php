@@ -18,7 +18,7 @@
         {{$users->faisal->name}}
         {{$users->faisal->start}}
 
-        {{$users->user->name}}
+        {{$users->azo->name}}
         <hr>
         <br>
 
@@ -59,7 +59,7 @@
                     <select name="seletedUser">
                         @foreach ($userjob as $users)
 
-                      <option value="{{$users->id}}">{{$users->user->name}}</option>
+                      <option value="{{$users->id}}">{{$users->azo->name}}</option>
                  @endforeach
                     </select>
                     <h5>      إختر الموظف   </h5>
@@ -85,7 +85,7 @@
             </button>
             </form>
             @foreach ($userjob as $users)
-            {{$users->user->name}}
+            {{$users->azo->name}}
             {{$users->faisal->name}}
             {{$users->faisal->start}}
             {{$users->faisal->price}}ريال 
@@ -93,7 +93,7 @@
             @if ($users->id == $userOvers->user_job_id )
             {{$userOvers->over_salary->name}}
             {{$userOvers->over_salary->percentage}} %
-            {{ $userOvers->user_job->faisal->price / $userOvers->over_salary->percentage }} ريال  
+            {{ $userOvers->user_job->faisal->price + (  $userOvers->user_job->faisal->price / $userOvers->over_salary->percentage ) }} ريال  
             @endif
        
             @endforeach

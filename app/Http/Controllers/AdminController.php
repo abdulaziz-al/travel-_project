@@ -91,7 +91,7 @@ class AdminController extends Controller
         $userOver->save();
 
 
-        Alert::success(' تم تسجيل بدل إلى'.' '. $userOver->user_job->user->name  ,  'اسم البدل'.' '. $userOver->over_salary->name );
+        Alert::success(' تم تسجيل بدل إلى'.' '. $userOver->user_job->azo->name  ,  'اسم البدل'.' '. $userOver->over_salary->name );
 
         return back();
 
