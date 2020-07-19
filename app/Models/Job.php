@@ -16,7 +16,7 @@ class Job extends Model
 
     protected $hidden = [
         'end','start','price',
-        'name','status'
+        'status'
     ];
 
    
