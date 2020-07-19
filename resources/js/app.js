@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 window.Vue = require('vue');
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import CreateEmploye from'./components/CreateEmploye.vue'
 
 import item from'./components/Item.vue'
 import routes from'./routes.js'
@@ -45,6 +46,7 @@ const app = new Vue({
     el: '#app',
     router,
     components:{
-        item
+        item,
+        CreateEmploye
     }
 });

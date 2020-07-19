@@ -1911,6 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_underscore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-underscore */ "./node_modules/vue-underscore/index.js");
+/* harmony import */ var _Item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Item */ "./resources/js/components/Item.vue");
 //
 //
 //
@@ -1989,11 +1990,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a
+    Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a,
+    item: _Item__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2083,27 +2098,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      show: 0,
+      shows: 0,
       create: 0
     };
   },
@@ -2124,11 +2124,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -43697,250 +43692,268 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "col-sm-12 form-inline" },
-      [
-        _c("multiselect", {
-          attrs: { options: _vm.optionsArray },
-          model: {
-            value: _vm.job.selected,
-            callback: function($$v) {
-              _vm.$set(_vm.job, "selected", $$v)
-            },
-            expression: "job.selected"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "mail.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.email,
-              expression: "job.email"
-            }
-          ],
-          staticClass: "form-control  ",
-          attrs: {
-            id: "email",
-            type: "email",
-            name: "email",
-            placeholder: "الإيميل",
-            required: "",
-            autocomplete: "email"
-          },
-          domProps: { value: _vm.job.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "email", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6 input-container" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "name.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.name,
-              expression: "job.name"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            id: "name",
-            type: "text",
-            name: "name",
-            placeholder: "الإسم الرباعي",
-            required: "",
-            autocomplete: "name",
-            autofocus: ""
-          },
-          domProps: { value: _vm.job.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "name", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-md-6 input-container" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "date.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.exp,
-              expression: "job.exp"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "exp",
-            id: "hijri-date-input3",
-            placeholder: "تاريخ إنتهاء الهوية أو الإقامة"
-          },
-          domProps: { value: _vm.job.exp },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "exp", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6 input-container" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "id.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.NID,
-              expression: "job.NID"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", name: "NID", placeholder: "رقم الهوية" },
-          domProps: { value: _vm.job.NID },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "NID", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "phone.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.phone,
-              expression: "job.phone"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", name: "phone", placeholder: "رقم الجوال" },
-          domProps: { value: _vm.job.phone },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "phone", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "password.png", alt: "Avatar" }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.job.password,
-              expression: "job.password"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            id: "password",
-            type: "password",
-            name: "password",
-            placeholder: "الرقم السري",
-            required: "",
-            autocomplete: "new-password"
-          },
-          domProps: { value: _vm.job.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.job, "password", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row mb-0" }, [
-      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "submit", id: "btn" },
-            on: { click: _vm.createJob }
-          },
-          [
-            _vm._v(
-              "\n                                إنشاء \n                            "
-            )
-          ]
-        )
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                { staticClass: "col-sm-12 form-inline" },
+                [
+                  _c("multiselect", {
+                    attrs: { options: _vm.optionsArray },
+                    model: {
+                      value: _vm.job.selected,
+                      callback: function($$v) {
+                        _vm.$set(_vm.job, "selected", $$v)
+                      },
+                      expression: "job.selected"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "mail.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.email,
+                        expression: "job.email"
+                      }
+                    ],
+                    staticClass: "form-control  ",
+                    attrs: {
+                      id: "email",
+                      type: "email",
+                      name: "email",
+                      placeholder: "الإيميل",
+                      required: "",
+                      autocomplete: "email"
+                    },
+                    domProps: { value: _vm.job.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 input-container" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "name.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.name,
+                        expression: "job.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "name",
+                      type: "text",
+                      name: "name",
+                      placeholder: "الإسم الرباعي",
+                      required: "",
+                      autocomplete: "name",
+                      autofocus: ""
+                    },
+                    domProps: { value: _vm.job.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c("div", { staticClass: "col-md-6 input-container" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "date.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.exp,
+                        expression: "job.exp"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "exp",
+                      id: "hijri-date-input5",
+                      placeholder: "تاريخ إنتهاء الهوية أو الإقامة"
+                    },
+                    domProps: { value: _vm.job.exp },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "exp", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 input-container" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "id.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.NID,
+                        expression: "job.NID"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "NID",
+                      placeholder: "رقم الهوية"
+                    },
+                    domProps: { value: _vm.job.NID },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "NID", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "phone.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.phone,
+                        expression: "job.phone"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "phone",
+                      placeholder: "رقم الجوال"
+                    },
+                    domProps: { value: _vm.job.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "phone", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("img", {
+                    staticClass: "img",
+                    attrs: { src: "password.png", alt: "Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.job.password,
+                        expression: "job.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "password",
+                      type: "password",
+                      name: "password",
+                      placeholder: "الرقم السري",
+                      required: "",
+                      autocomplete: "new-password"
+                    },
+                    domProps: { value: _vm.job.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.job, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row mb-0" }, [
+                _c("div", { staticClass: "col-md-6 offset-md-4" }, [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit", id: "btn" },
+                      on: { click: _vm.createJob }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                   إنشاء \n                               "
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   ])
@@ -43967,66 +43980,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _c("input", {
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit", id: "menu1", value: "إنشاء" },
-                on: {
-                  click: function($event) {
-                    ;(_vm.show = 0), (_vm.create = 1)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit", id: "menu2", value: "متابعة" },
-                on: {
-                  click: function($event) {
-                    ;(_vm.show = 1), (_vm.create = 0)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-body" },
-              [
-                _c("show", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.show == 1,
-                      expression: "show == 1"
-                    }
-                  ]
-                }),
-                _vm._v(" "),
-                _c("create", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.create == 1,
-                      expression: "create == 1"
-                    }
-                  ]
-                })
-              ],
-              1
-            )
-          ])
-        ])
-      ])
-    ])
-  ])
+  return _c(
+    "div",
+    [
+      _c(
+        "router-link",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: (_vm.shows = 1),
+              expression: "shows =  1"
+            }
+          ],
+          staticClass: "btn btn-primary",
+          attrs: { to: "/CreateEmploye" },
+          on: {
+            click: function($event) {
+              _vm.shows == 0
+            }
+          }
+        },
+        [_vm._v("إنشاء")]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: (_vm.shows = 1),
+              expression: "shows = 1 "
+            }
+          ],
+          staticClass: "btn btn-primary",
+          attrs: { to: "/ShowEmploye" },
+          on: {
+            click: function($event) {
+              _vm.shows == 0
+            }
+          }
+        },
+        [_vm._v("متابعة")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44062,39 +44064,25 @@ var staticRenderFns = [
         _c("table", { staticClass: "table table-hover" }, [
           _c("thead", [
             _c("tr", [
-              _c("th", [_vm._v("Firstname")]),
+              _c("th", [_vm._v("الحالة")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Lastname")]),
+              _c("th", [_vm._v("البدلات")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Email")])
+              _c("th", [_vm._v("الراتب")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("الوظيفة")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("رقم الجوال")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("الإيميل")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("الإسم")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("رقم الهوية ")])
             ])
           ]),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("John")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Doe")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("john@example.com")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Mary")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Moe")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("mary@example.com")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("July")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Dooley")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("july@example.com")])
-            ])
-          ])
+          _c("tbody", [_c("tr", [_c("td", [_vm._v("1015982365")])])])
         ])
       ])
     ])
@@ -59362,10 +59350,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_Item_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Item.vue */ "./resources/js/components/Item.vue");
-/* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_CreateEmploye_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/CreateEmploye.vue */ "./resources/js/components/CreateEmploye.vue");
+/* harmony import */ var _components_Item_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Item.vue */ "./resources/js/components/Item.vue");
+/* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59380,16 +59369,17 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a;
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
+
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a;
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   onOpen: function onOpen(toast) {
-    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.stopTimer);
-    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.resumeTimer);
+    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.stopTimer);
+    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.resumeTimer);
   }
 });
 window.Toast = Toast;
@@ -59401,14 +59391,15 @@ window.Toast = Toast;
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  routes: _routes_js__WEBPACK_IMPORTED_MODULE_3__["default"] // short for `routes: routes`
+  routes: _routes_js__WEBPACK_IMPORTED_MODULE_4__["default"] // short for `routes: routes`
 
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: router,
   components: {
-    item: _components_Item_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    item: _components_Item_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    CreateEmploye: _components_CreateEmploye_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 

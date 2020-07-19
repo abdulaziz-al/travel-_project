@@ -12,21 +12,20 @@
     <link href="{{ asset('css/bootstrap-datetimepicker.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+      
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
-
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   
-    <script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
-    <script src="{{ asset('js/momentjs.js') }}" defer></script>
-    <script src="{{ asset('js/moment-with-locales.js') }}" defer></script>
-    <script src="{{ asset('js/moment-hijri.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap-hijri-datetimepicker.main.js') }}" defer></script>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      
+          <script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
+          <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+          <script src="{{ asset('js/momentjs.js') }}" defer></script>
+          <script src="{{ asset('js/moment-with-locales.js') }}" defer></script>
+          <script src="{{ asset('js/moment-hijri.js') }}" defer></script>
+          <script src="{{ asset('js/bootstrap-hijri-datetimepicker.main.js') }}" defer></script>
 
 
  
@@ -93,7 +92,7 @@
         </nav>
 
         <main class="py-4">
-          
+
             <div id="app">
 
             @yield('content')
@@ -104,35 +103,47 @@
     </div>
 
 
-    <script>
-        $("select").on("click" , function() {
-
-$(this).parent(".select-box").toggleClass("open");
-
-});
-
-$(document).mouseup(function (e)
-{
-var container = $(".select-box");
-
-if (container.has(e.target).length === 0)
-{
-    container.removeClass("open");
-}
-});
+   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
 
 
-$("select").on("change" , function() {
+    
+        $(function initHijrDatePicker() {
+         
+          for(var i=1; i<=24; i++){
+            var el = document.getElementById("hijri-date-input" + i);
 
-var selection = $(this).find("option:selected").text(),
-  labelFor = $(this).attr("id"),
-  label = $("[for='" + labelFor + "']");
+            $(el).hijriDatePicker({
+                locale: "ar-sa",
 
-label.find(".label-desc").html(selection);
+                format:"هـ iYYYY-iMM-iDD " + "DD-MM-YYYY م" ,
+                hijriFormat:"هـ iYYYY-iMM-iDD " + "DD-MM-YYYY م" ,
 
-});
-      </script>
-          <script src="{{ asset('js/app.js') }}" defer></script>
+                dayViewHeaderFormat: "MMMM YYYY",
+                hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                showSwitcher: true,
+
+                allowInputToggle: true,
+                showTodayButton: false,
+                useCurrent: true,
+                isRTL: false,
+                keepOpen: false,
+                hijri: true,
+                debug: true,
+                showClear: true,
+                showTodayButton: true,
+                showClose: true
+
+            });
+          }
+
+        })
+
+
+    </script>
+
 
 </body>
 </html>

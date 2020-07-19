@@ -1,7 +1,14 @@
 <template>
     <div>
-                     
+ <div class="container">
 
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+            
+
+                <div class="card-body">
+             
 
                             <div class="col-sm-12 form-inline">
                               <multiselect 
@@ -37,7 +44,7 @@
                             <div class="col-md-6 input-container">
                                 <img src="date.png" class="img" alt="Avatar">
 
-                                    <input type='text' class="form-control" name="exp" v-model="job.exp"  id="hijri-date-input3" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
+                                    <input type='text' class="form-control" name="exp" v-model="job.exp"  id="hijri-date-input5" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
                              
                                                         </div>
                             <div class="col-md-6 input-container">
@@ -74,13 +81,20 @@
                                 </button>
                             </div>
                         </div>
+                         </div>
+    </div> 
+    </div> 
+    </div>
+     </div>
     </div>
 </template>
 <script>
   import Multiselect from 'vue-multiselect'
 import underscore from 'vue-underscore'
+import item from './Item'
+
   export default {
-    components: { Multiselect },
+    components: { Multiselect  ,item},
     data () {
       return {
         job:{
