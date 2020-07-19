@@ -101,7 +101,41 @@
             </div>
         </main>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(function initHijrDatePicker() {
+           
+           for(var i=1; i<=24; i++){
+             var el = document.getElementById("hijri-date-input" + i);
+       
+             $(el).hijriDatePicker({
+                 locale: "ar-sa",
+       
+                 format:"هـ iYYYY-iMM-iDD " + "DD-MM-YYYY م" ,
+                 hijriFormat:"هـ iYYYY-iMM-iDD " + "DD-MM-YYYY م" ,
+       
+                 dayViewHeaderFormat: "MMMM YYYY",
+                 hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                 showSwitcher: true,
+       
+                 allowInputToggle: true,
+                 showTodayButton: false,
+                 useCurrent: true,
+                 isRTL: false,
+                 keepOpen: false,
+                 hijri: true,
+                 debug: true,
+                 showClear: true,
+                 showTodayButton: true,
+                 showClose: true
+       
+             });
+           }
+       
+         })
+    </script>
 
    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

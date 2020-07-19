@@ -33,8 +33,13 @@ class HomeController extends Controller
     }
 
     protected function welcome(){
-        toast('Question Toast','question');
-        return view('welcome');
+
+        $userjob = UserJob::all();
+        $over_salary = OverSalary::all();
+        $userOver = UserOver::all();
+       // return $userOver ;
+        $arr = Array('userjob'=>$userjob , 'over_salary'=>$over_salary , 'userOver'=>$userOver);
+        return view('welcome' , $arr);
     }
     protected function getjob(){
         $job=Job::all();

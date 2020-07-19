@@ -8,7 +8,7 @@ class Salary extends Model
 {
     protected $table = 'salaries';
     protected $primaryKey = 'id';
-    protected $with = ['user_jobs'];
+    protected $with = ['user_job'];
 
     protected $fillable = [
         'user_job_id','price',

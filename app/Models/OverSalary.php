@@ -8,7 +8,7 @@ class OverSalary extends Model
 {
     protected $table = 'over_salaries';
     protected $primaryKey = 'id';
-    protected $with = ['user_jobs'];
+    protected $with = ['user_job'];
 
     protected $fillable = [
         'name','percentage','user_job_id'
