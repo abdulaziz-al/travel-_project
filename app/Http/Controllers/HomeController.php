@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Job;
 use App\Models\UserJob;
+use App\Models\OverSalary;
+use App\Models\UserOver;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 
@@ -41,40 +43,5 @@ class HomeController extends Controller
         $arr = Array('userjob'=>$userjob , 'over_salary'=>$over_salary , 'userOver'=>$userOver);
         return view('welcome' , $arr);
     }
-    protected function getjob(){
-        $job=Job::all();
-        return response()->json(['status'=>'success','data'=>$job]);
-    }
-    protected function createjob(Request $request){//post 
-        $validator = Validator::make($request->all(),[
-            
-            ]);
-            if ($validator->fails()) {
-                return response()->json(['status'=>'error','errors'=>$validator->errors()]);
-            }
-        $job=Job::where('name',$request->selected)->first();
-        $user=new User;
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->NID=$request->NID;
-        $user->exp=$request->exp;
-        $user->phone=$request->phone;
-        $user->password=$request->password;
-        $user->role_id=1;
-        $user->save();
-        $userJob=new UserJob;
-        $userJob->user_id= $user->id;
-        $userJob->job_id= $job->id;
-        $userJob->status=1;
-        $userJob->save();
-        return response()->json(['status'=>'success','data'=>$userJob]);
-        
-
-        
-
-    }
-    protected function CreateEmploye(){
-        $job=Job::all();
-        return view('HR.CreateEmploye');
-    }
+   
 }

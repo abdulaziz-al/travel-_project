@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/','HomeController@welcome');
-Route::get('/CreateEmploye','HomeController@CreateEmploye');
+Route::get('/CreateEmploye','AdminController@CreateEmploye');
 
 
 Route::post('/Addmember','AdminController@Addmember')->name('Addmember');
