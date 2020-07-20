@@ -2154,7 +2154,93 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      employees: {},
+      name: 'zee'
+    };
+  },
+  methods: {
+    getPost: function getPost() {
+      var _this = this;
+
+      axios.get('api/getEmp').then(function (response) {
+        _this.employees = response.data.data;
+      });
+    },
+    editPost: function editPost(emp) {
+      this.name = emp;
+      console.log(this.name);
+    }
+  },
+  created: function created() {
+    this.getPost();
+  }
+});
 
 /***/ }),
 
@@ -44049,38 +44135,325 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control my-2",
+                  attrs: { type: "text", placeholder: "title" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.employees, function(emp) {
+            return _c("tr", { key: emp.id }, [
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.status)
+                      }
+                    }
+                  },
+                  [_vm._v("\n        " + _vm._s(emp.status) + "\n        ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp)
+                      }
+                    }
+                  },
+                  [_vm._v("\n          12%\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.job.price)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(emp.job.price) + "\n          "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.job.name)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(emp.job.name) + "\n          "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.user.phone)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(emp.user.phone) + "\n          "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.user.email)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(emp.user.email) + "\n          "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.user.name)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n          " + _vm._s(emp.user.name) + "\n          "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "1" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editPost(emp.user.NID)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n            " + _vm._s(emp.user.NID) + "\n            "
+                    )
+                  ]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "card-body" }, [
-        _c("table", { staticClass: "table table-hover" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("الحالة")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("البدلات")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("الراتب")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("الوظيفة")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("رقم الجوال")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("الإيميل")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("الإسم")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("رقم الهوية ")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [_c("tr", [_c("td", [_vm._v("1015982365")])])])
-        ])
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("create")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "button" } },
+        [_vm._v("create")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { colspan: "1" } }, [_vm._v("الحالة")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("البدلات")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("الراتب")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("الوظيفة")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("رقم الجوال")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("الإيميل")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("الإسم")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("رقم الهوية ")])
       ])
     ])
   }

@@ -9,7 +9,8 @@ class UserJob extends Model
 {
     protected $table = 'user_jobs';
     protected $primaryKey = 'id';
-   
+    protected $with = ['user','job'];
+
 
     protected $guarded = [];
 
@@ -20,17 +21,17 @@ class UserJob extends Model
         ];
 
     protected $hidden = [
-        'user_id','job_id','status'
+        'user_id','job_id'
 
     ];
 
    
-    public function azo()
+    public function user()
     {
        // return $this->belongsTo(User::class);// stander and the  basic one ..... function name must be like db table name 
         return $this->belongsTo('App\User', 'user_id', 'id');
     } 
-    public function faisal()
+    public function job()
     {
      //   return $this->belongsTo(job::class);
 

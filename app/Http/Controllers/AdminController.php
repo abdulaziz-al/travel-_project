@@ -137,4 +137,9 @@ class AdminController extends Controller
         $job=Job::all();
         return view('HR.CreateEmploye');
     }
+    protected function getEmp(){
+        $emp=UserJob::all();
+        return response()->json(['status'=>'success','data'=>$emp]);
+    }
+
 }
