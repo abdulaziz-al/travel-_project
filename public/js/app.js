@@ -2061,8 +2061,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     optionsArray: function optionsArray() {
-      return _.map(this.options, function (num, key) {
-        return num.name;
+      return _.map(this.options, function (nums, key) {
+        return nums.name;
       });
     }
   },
@@ -60071,8 +60071,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fss6s\Desktop\terhal\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fss6s\Desktop\terhal\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ezooa\Desktop\other company\travel_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ezooa\Desktop\other company\travel_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
