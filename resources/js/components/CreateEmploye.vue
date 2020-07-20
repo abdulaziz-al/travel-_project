@@ -91,10 +91,9 @@
 <script>
   import Multiselect from 'vue-multiselect'
 import underscore from 'vue-underscore'
-import item from './Item'
 
   export default {
-    components: { Multiselect  ,item},
+    components: { Multiselect  },
     data () {
       return {
         job:{
