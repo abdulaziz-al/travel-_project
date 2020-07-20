@@ -20,5 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('getjob','AdminController@getjob');
 Route::post('createjob','AdminController@createjob');
 
+Route::get('getEmp','AdminController@getEmp');
+
 
 

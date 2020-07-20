@@ -43,5 +43,5 @@ class HomeController extends Controller
         $arr = Array('userjob'=>$userjob , 'over_salary'=>$over_salary , 'userOver'=>$userOver);
         return view('welcome' , $arr);
     }
-   
+  
 }

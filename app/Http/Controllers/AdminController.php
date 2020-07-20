@@ -98,12 +98,12 @@ class AdminController extends Controller
         return back();
 
 
-    }   
-
+    }
     protected function getjob(){
         $job=Job::all();
         return response()->json(['status'=>'success','data'=>$job]);
     }
+  
     protected function createjob(Request $request){//post 
         $validator = Validator::make($request->all(),[
             
@@ -131,9 +131,15 @@ class AdminController extends Controller
 
         
 
-    }
+    }   
+    
     protected function CreateEmploye(){
         $job=Job::all();
         return view('HR.CreateEmploye');
     }
+    protected function getEmp(){
+        $emp=UserJob::all();
+        return response()->json(['status'=>'success','data'=>$emp]);
+    }
+
 }
