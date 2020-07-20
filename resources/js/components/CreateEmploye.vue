@@ -157,9 +157,9 @@ this.job={
     computed:{
         optionsArray(){
             return _.map(this.options,
-             function(num , key)
+             function(nums , key)
             {
-                return num.name})
+                return nums.name})
         }
     },
 

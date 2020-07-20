@@ -2061,8 +2061,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     optionsArray: function optionsArray() {
-      return _.map(this.options, function (num, key) {
-        return num.name;
+      return _.map(this.options, function (nums, key) {
+        return nums.name;
       });
     }
   },
