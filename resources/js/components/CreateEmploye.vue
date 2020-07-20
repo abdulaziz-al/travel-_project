@@ -22,7 +22,7 @@
                             <div class="col-md-6">
                                 <img src="mail.png" class="img" alt="Avatar">
 
-                                <input id="email" type="email" class="form-control  " name="email" v-model="job.email"   placeholder="الإيميل" required autocomplete="email">
+                                <input id="email" type="email" class="form-control  " name="email" v-model="job.email"   placeholder="الإيميل" required autocomplete="email"/>
 
                              
 
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6 input-container">
                                 <img src="name.png" class="img" alt="Avatar">
-                                <input id="name" type="text" class="form-control" name="name" v-model="job.name"   placeholder="الإسم الرباعي" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control" name="name" v-model="job.name"   placeholder="الإسم الرباعي" required autocomplete="name" autofocus />
 
                             
                         
@@ -50,7 +50,7 @@
                             <div class="col-md-6 input-container">
                                 <img src="id.png" class="img" alt="Avatar">
 
-                                <input type="text" class="form-control" name="NID" v-model="job.NID" placeholder="رقم الهوية">
+                                <input type="text" class="form-control" name="NID" v-model="job.NID" placeholder="رقم الهوية"/>
                             </div>
                         </div>
 
@@ -60,13 +60,13 @@
                             <div class="col-md-6">
                                 <img src="phone.png" class="img" alt="Avatar">
 
-                            <input type="text" class="form-control" name="phone" v-model="job.phone" placeholder="رقم الجوال">
+                            <input type="text" class="form-control" name="phone" v-model="job.phone" placeholder="رقم الجوال"/>
                             </div>
                             <div class="col-md-6">
                                 <img src="password.png" class="img" alt="Avatar">
 
                                 
-                                <input id="password" type="password" class="form-control" name="password" v-model="job.password" placeholder="الرقم السري" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control" name="password" v-model="job.password" placeholder="الرقم السري" required autocomplete="new-password"/>
 
                              
                             </div>
