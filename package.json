@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "moment-hijri": "^2.1.2",
         "sweetalert2": "^9.17.0",
         "vue-dynamic-dropdown": "^1.0.12",
         "vue-multiselect": "^2.1.6",

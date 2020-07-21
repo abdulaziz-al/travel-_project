@@ -21,6 +21,9 @@ Route::get('getjob','AdminController@getjob');
 Route::post('createjob','AdminController@createjob');
 
 Route::get('getEmp','AdminController@getEmp');
+Route::put('updateemp/{empid}','AdminController@updateemp');
+Route::get('/search{name}','AdminController@search');
+
 
 
 

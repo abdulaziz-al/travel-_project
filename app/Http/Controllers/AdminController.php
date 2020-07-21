@@ -104,7 +104,7 @@ class AdminController extends Controller
         return response()->json(['status'=>'success','data'=>$job]);
     }
   
-    protected function createjob(Request $request){//post 
+    protected function createjob(Request $request){//post for api
         $validator = Validator::make($request->all(),[
             
             ]);
@@ -133,7 +133,7 @@ class AdminController extends Controller
 
     }   
     
-    protected function CreateEmploye(){
+    protected function CreateEmploye(){//for web 
         $job=Job::all();
         return view('HR.CreateEmploye');
     }
@@ -141,5 +141,53 @@ class AdminController extends Controller
         $emp=UserJob::all();
         return response()->json(['status'=>'success','data'=>$emp]);
     }
+    protected function ShowEmploye(){//for web
+       
+        return view('HR.ShowEmploye');
+    }
+    protected function updateemp(Request $request,$empid){
+        
+   ///     $validator = Validator::make($request->all(),[
+   ///       
+   ///         ]);
+   ///         if ($validator->fails()) {
+   ///           return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+   ///         }
+        $user=User::find($empid);
+        if($user!=null){
+            
+        $user->name=$request->name;
+        
+        $user->save();
+
+        }
+        
+            $job=Job::find($empid);
+            if($job!=null){
+            
+        $job->name=$request->name;
+        
+        $job->save();
+            
+            }
+        
+        
+
+        $emp=UserJob::all();
+
+            return response()->json(['status'=>'success']);
+
+        }
+        protected function search(Request $request, $name){
+            $search=User::where('name','like','%'.$name.'%')->get();
+            $first = $search->first();
+            $end = $search->last();
+            foreach($search as $s){
+            $emp[$s->id]=UserJob::where('user_id',$s->id)->first();
+            }
+            return response()->json(['status'=>'success','data'=>$emp]);
+
+            //return $emp;
+        }
 
 }

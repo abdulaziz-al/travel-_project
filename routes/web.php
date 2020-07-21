@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','HomeController@welcome');
 Route::get('/CreateEmploye','AdminController@CreateEmploye');
 
+Route::get('/ShowEmploye','AdminController@ShowEmploye');
 
 Route::post('/Addmember','AdminController@Addmember')->name('Addmember');
 //// for test fucntions day 1 HR functions 

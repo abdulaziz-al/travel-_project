@@ -169,4 +169,24 @@ this.job={
   }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"> 
+</style>
+<style>
+input{
+    direction: rtl;
+    width: 30%;
+}
+.img{
+    width: 10%;
+margin-left: 87%;
+}
+#btn{
+width: 35%;
+margin-left: 15%;
+}
+
+.imgg{
+    width: 13%;
+    margin-left: 87%;
+    }
+</style>
