@@ -2001,6 +2001,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2017,7 +2022,8 @@ __webpack_require__.r(__webpack_exports__);
         NID: '',
         exp: '',
         password: '',
-        selected: null
+        selected: null,
+        image: ''
       },
       options: []
     };
@@ -2026,12 +2032,14 @@ __webpack_require__.r(__webpack_exports__);
     createJob: function createJob() {
       var _this = this;
 
+      //    const fd = new FormData();
+      //    fd.append('image' , this.image)
       console.log(this.job);
       axios.post('api/createjob', this.job).then(function (response) {
         if (response.data.status == 'error') {
           Toast.fire({
             icon: 'error',
-            title: 'Create error'
+            title: _this.job.image.name
           });
         } else if (response.data.status == 'success') {
           Toast.fire({
@@ -2051,18 +2059,37 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getPost: function getPost() {
+    onFileChange: function onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    createImage: function createImage(file) {
       var _this2 = this;
 
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result;
+        _this2.job.image = vm.image;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    getPost: function getPost() {
+      var _this3 = this;
+
       axios.get('api/getjob').then(function (response) {
-        _this2.options = response.data.data;
+        _this3.options = response.data.data;
       });
     }
   },
   computed: {
     optionsArray: function optionsArray() {
-      return _.map(this.options, function (nums, key) {
-        return nums.name;
+      return _.map(this.options, function (num, key) {
+        return num.name;
       });
     }
   },
@@ -2084,6 +2111,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShowEmploye__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowEmploye */ "./resources/js/components/ShowEmploye.vue");
 /* harmony import */ var _CreateEmploye__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateEmploye */ "./resources/js/components/CreateEmploye.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44012,7 +44048,12 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "file" },
+                  on: { change: _vm.onFileChange }
+                })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group row mb-0" }, [
@@ -44063,55 +44104,66 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "router-link",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: (_vm.shows = 1),
-              expression: "shows =  1"
-            }
-          ],
-          staticClass: "btn btn-primary",
-          attrs: { to: "/CreateEmploye" },
-          on: {
-            click: function($event) {
-              _vm.shows == 0
-            }
-          }
-        },
-        [_vm._v("إنشاء")]
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: (_vm.shows = 1),
-              expression: "shows = 1 "
-            }
-          ],
-          staticClass: "btn btn-primary",
-          attrs: { to: "/ShowEmploye" },
-          on: {
-            click: function($event) {
-              _vm.shows == 0
-            }
-          }
-        },
-        [_vm._v("متابعة")]
-      )
-    ],
-    1
-  )
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-header" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: (_vm.shows = 1),
+                        expression: "shows =  1"
+                      }
+                    ],
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/CreateEmploye" },
+                    on: {
+                      click: function($event) {
+                        _vm.shows == 0
+                      }
+                    }
+                  },
+                  [_vm._v("إنشاء")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: (_vm.shows = 1),
+                        expression: "shows = 1 "
+                      }
+                    ],
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/ShowEmploye" },
+                    on: {
+                      click: function($event) {
+                        _vm.shows == 0
+                      }
+                    }
+                  },
+                  [_vm._v("متابعة")]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59720,7 +59772,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_CreateEmploye_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/CreateEmploye.vue */ "./resources/js/components/CreateEmploye.vue");
+/* harmony import */ var _components_CreateEmploye__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/CreateEmploye */ "./resources/js/components/CreateEmploye.vue");
 /* harmony import */ var _components_Item_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Item.vue */ "./resources/js/components/Item.vue");
 /* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
@@ -59735,6 +59787,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+ //import CreateEmploye from'./components/CreateEmploye.vue'
 
 
 
@@ -59769,7 +59822,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: router,
   components: {
     item: _components_Item_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    CreateEmploye: _components_CreateEmploye_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    cr: _components_CreateEmploye__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 

@@ -106,28 +106,39 @@ class AdminController extends Controller
   
     protected function createjob(Request $request){//post 
         $validator = Validator::make($request->all(),[
-            
+            'exp'=>'required'
             ]);
             if ($validator->fails()) {
                 return response()->json(['status'=>'error','errors'=>$validator->errors()]);
             }
-        $job=Job::where('name',$request->selected)->first();
-        $user=new User;
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->NID=$request->NID;
-        $user->exp=$request->exp;
-        $user->phone=$request->phone;
-        $user->password=$request->password;
-        $user->role_id=1;
-        $user->save();
-        $userJob=new UserJob;
-        $userJob->user_id= $user->id;
-        $userJob->job_id= $job->id;
-        $userJob->status=1;
-        $userJob->save();
-        return response()->json(['status'=>'success','data'=>$userJob]);
-        
+           // $image[]  = $request->image ; 
+           $image = $request->get('image');
+           $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+           
+           \File::make($request->get('image'))->save(public_path('/images').$name);
+           // $file = $image[1];
+           // $extension = $file->getClientOriginalExtension();
+           // $destination_path= 'files'.'/'.'AZO' . '/' ;
+           // $file_name = 'Background' . '.'. $extension;
+           // $file->move($destination_path, $file_name);
+
+      //  $job=Job::where('name',$request->selected)->first();
+      //  $user=new User;
+      //  $user->name=$request->name;
+      //  $user->email=$request->email;
+      //  $user->NID=$request->NID;
+      //  $user->exp=$request->exp;
+      //  $user->phone=$request->phone;
+      //  $user->password=$request->password;
+      //  $user->role_id=1;
+      //  $user->save();
+      //  $userJob=new UserJob;
+      //  $userJob->user_id= $user->id;
+      //  $userJob->job_id= $job->id;
+      //  $userJob->status=1;
+      //  $userJob->save();
+        //return response()->json(['status'=>'success','data'=>$userJob]);
+        return $request;
 
         
 
@@ -141,5 +152,25 @@ class AdminController extends Controller
         $emp=UserJob::all();
         return response()->json(['status'=>'success','data'=>$emp]);
     }
+
+    public function store(Request $request)
+    {
+        $file = $request->file('image');
+
+       if($request->get('image'))
+       {
+      
+
+
+          $image = $request->get('image');
+          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+          
+          \Image::make($request->get('image'))->save(public_path('/images').$name);
+        }
+
+      
+
+       return response()->json(['success' => 'You have successfully uploaded an image'], 200);
+     }
 
 }

@@ -24,3 +24,4 @@ Route::get('getEmp','AdminController@getEmp');
 
 
 
+Route::post('image/store','AdminController@store');

@@ -44,7 +44,7 @@
                             <div class="col-md-6 input-container">
                                 <img src="date.png" class="img" alt="Avatar">
 
-                                    <input type='text' class="form-control" name="exp" v-model="job.exp"  id="hijri-date-input5" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
+                                    <input type='text' class="form-control"  v-model="job.exp" name="exp"  id="hijri-date-input5" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
                              
                                                         </div>
                             <div class="col-md-6 input-container">
@@ -70,6 +70,8 @@
 
                              
                             </div>
+                                <input type="file" @change="onFileChange">
+
                         </div>
 
                         <div class="form-group row mb-0">
@@ -85,7 +87,10 @@
     </div> 
     </div> 
     </div>
+
      </div>
+
+
     </div>
 </template>
 <script>
@@ -104,7 +109,10 @@ import underscore from 'vue-underscore'
           NID:'',
           exp:'',
           password:'',
-                  selected: null,
+          selected: null,
+          image:'',
+
+          
 
         },
 
@@ -114,13 +122,15 @@ import underscore from 'vue-underscore'
     },
     methods:{
       createJob(){
+    //    const fd = new FormData();
+    //    fd.append('image' , this.image)
         console.log(this.job)
         axios.post('api/createjob',this.job).
         then(response=>{
           if(response.data.status=='error'){
             Toast.fire({
           icon: 'error',
-          title: 'Create error'
+          title: this.job.image.name
         })
       
           }
@@ -147,6 +157,24 @@ this.job={
         }
         )
       },
+      onFileChange(e){
+        let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+
+      },
+       createImage(file) {
+                var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+        this.job.image = vm.image
+      };
+      reader.readAsDataURL(file);
+            },
         getPost()
        {
             axios.get('api/getjob').then(response=>{
@@ -154,12 +182,13 @@ this.job={
     })
         }
     },
+
     computed:{
         optionsArray(){
             return _.map(this.options,
-             function(nums , key)
+             function(num , key)
             {
-                return nums.name})
+                return num.name})
         }
     },
 
