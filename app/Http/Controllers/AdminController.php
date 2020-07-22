@@ -189,12 +189,14 @@ class AdminController extends Controller
             return response()->json(['status'=>'success']);
 
         }
-        protected function search(Request $request, $name){
+        protected function search( $name){
             $search=User::where('name','like','%'.$name.'%')->get();
             $first = $search->first();
             $end = $search->last();
+            $i = 0 ; 
             foreach($search as $s){
-            $emp[$s->id]=UserJob::where('user_id',$s->id)->first();
+            $emp[]=UserJob::where('user_id',$s->id)->first();
+           
             }
             return response()->json(['status'=>'success','data'=>$emp]);
 

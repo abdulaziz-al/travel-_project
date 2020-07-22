@@ -11,8 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
-       <input v-if="!showsearch" type="text" class="form-control my-2" name="name" placeholder="title"  v-model="Edit.name" />
-       <input v-else type="text" class="form-control my-2" name="name" placeholder="title"  v-model="searchEdit.name" />
+       <input  type="text" class="form-control my-2" name="name" placeholder="title"  v-model="Edit.name"  />
        
 
       </div>
@@ -58,8 +57,8 @@
         </tr>
       </thead>
 
-      <tbody v-if="!showsearch">
-                <tr    v-for="emp in employees"  :key="emp.id" >
+      <tbody >
+                <tr v-for="emp in employees.data"  :key="emp.id" >
 
 
        
@@ -106,54 +105,7 @@
                 </tr>
 
       </tbody>
- <tbody v-else >
-                <tr    v-for="res in result.data"  :key="res.id" >
-
-
-       
-          <td colspan="1">
-        <a type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.id,res.status)">
-        {{res.status}}
-        </a>
-        </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res)">
-          12%
-          </button>
-          </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.id,res.job.price)">
-          {{res.job.price}}
-          </button>
-          </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.job.id,res.job.name)">
-          {{res.job.name}}
-          </button>
-          </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.id,res.user.phone)">
-          {{res.user.phone}}
-          </button>
-          </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.id,res.user.email)">
-          {{res.user.email}}
-          </button>
-          </td>
-          <td colspan="1">
-          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.user.id,res.user.name)">
-          {{res.user.name}}
-          </button>
-          </td>
-            <td colspan="1">
-            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" @click="editPost(res.id,res.user.NID)">
-            {{res.user.NID}}
-            </button>
-            </td>
-                </tr>
-
-      </tbody>
+ 
     </table>
       </div>
      </div>
@@ -188,48 +140,39 @@ export default {
           id:'',
 
         },
-        searchEdit:{
-        id:'',
-        name:'',
-        }
+       
       
       }
       },
     
     methods:{
       searchemp(){
-        fetch('api/search'+this.search)
-        .then(res => res.json())
-        .then(res => {
-          this.Edit=res;
-          this.result=res;
-          this.search='';
-          console.log(this.result);
-
-          this.showsearch=true;
-          console.log(this.showsearch);
-
-          //this.result=response.data
-
-
+          axios.get('api/search'+this.search).then(response=>{       
+          this.employees=response.data;
         })
         .catch(err =>{
           console.log(err);
         });
 
         },
+        NameTitle(e){
+          this.Edit.name = this.e
+          console.log(this.Edit);
+
+
+        },
       getPost()
        {
             axios.get('api/getEmp').then(response=>{
-              this.employees=response.data.data
+              this.employees=response.data
               console.log(this.employees)
     })
         },
       editPost(id,emp){
-        this.searchEdit.name = emp
-        this.searchEdit.id = id
-        this.Edit.name=emp
-        this.Edit.id = id 
+       // this.searchEdit.name = emp
+       // this.searchEdit.id = id
+        this.Edit={id:id,name:emp}
+        
         console.log(this.Edit)
 
 
@@ -237,7 +180,7 @@ export default {
           updateemp(){
                 console.log(this.Edit)
 
-        axios.put('api/updateemp/'+this.searchEdit.id,this.searchEdit).
+        axios.put('api/updateemp/'+this.Edit.id,this.Edit).
         then(response=>{
           if(response.data.status=='error'){
             Toast.fire({

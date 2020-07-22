@@ -2131,8 +2131,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
 //
 //
@@ -2140,7 +2138,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
->>>>>>> 697d01e31ff1da9b46dce61d5fea0c407642e9f9
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2286,54 +2283,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2352,10 +2301,6 @@ __webpack_require__.r(__webpack_exports__);
       showsearch: false,
       result: {
         id: ''
-      },
-      searchEdit: {
-        id: '',
-        name: ''
       }
     };
   },
@@ -2363,39 +2308,38 @@ __webpack_require__.r(__webpack_exports__);
     searchemp: function searchemp() {
       var _this = this;
 
-      fetch('api/search' + this.search).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.Edit = res;
-        _this.result = res;
-        _this.search = '';
-        console.log(_this.result);
-        _this.showsearch = true;
-        console.log(_this.showsearch); //this.result=response.data
+      axios.get('api/search' + this.search).then(function (response) {
+        _this.employees = response.data;
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    NameTitle: function NameTitle(e) {
+      this.Edit.name = this.e;
+      console.log(this.Edit);
     },
     getPost: function getPost() {
       var _this2 = this;
 
       axios.get('api/getEmp').then(function (response) {
-        _this2.employees = response.data.data;
+        _this2.employees = response.data;
         console.log(_this2.employees);
       });
     },
     editPost: function editPost(id, emp) {
-      this.searchEdit.name = emp;
-      this.searchEdit.id = id;
-      this.Edit.name = emp;
-      this.Edit.id = id;
+      // this.searchEdit.name = emp
+      // this.searchEdit.id = id
+      this.Edit = {
+        id: id,
+        name: emp
+      };
       console.log(this.Edit);
     },
     updateemp: function updateemp() {
       var _this3 = this;
 
       console.log(this.Edit);
-      axios.put('api/updateemp/' + this.searchEdit.id, this.searchEdit).then(function (response) {
+      axios.put('api/updateemp/' + this.Edit.id, this.Edit).then(function (response) {
         if (response.data.status == 'error') {
           Toast.fire({
             icon: 'error',
@@ -44454,57 +44398,27 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                !_vm.showsearch
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Edit.name,
-                          expression: "Edit.name"
-                        }
-                      ],
-                      staticClass: "form-control my-2",
-                      attrs: {
-                        type: "text",
-                        name: "name",
-                        placeholder: "title"
-                      },
-                      domProps: { value: _vm.Edit.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.Edit, "name", $event.target.value)
-                        }
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Edit.name,
+                      expression: "Edit.name"
+                    }
+                  ],
+                  staticClass: "form-control my-2",
+                  attrs: { type: "text", name: "name", placeholder: "title" },
+                  domProps: { value: _vm.Edit.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    })
-                  : _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchEdit.name,
-                          expression: "searchEdit.name"
-                        }
-                      ],
-                      staticClass: "form-control my-2",
-                      attrs: {
-                        type: "text",
-                        name: "name",
-                        placeholder: "title"
-                      },
-                      domProps: { value: _vm.searchEdit.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.searchEdit, "name", $event.target.value)
-                        }
-                      }
-                    })
+                      _vm.$set(_vm.Edit, "name", $event.target.value)
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -44583,437 +44497,213 @@ var render = function() {
               _c("table", { staticClass: "table table-hover" }, [
                 _vm._m(1),
                 _vm._v(" "),
-                !_vm.showsearch
-                  ? _c(
-                      "tbody",
-                      _vm._l(_vm.employees, function(emp) {
-                        return _c("tr", { key: emp.id }, [
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp.id, emp.status)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n        " +
-                                    _vm._s(emp.status) +
-                                    "\n        "
-                                )
-                              ]
+                _c(
+                  "tbody",
+                  _vm._l(_vm.employees.data, function(emp) {
+                    return _c("tr", { key: emp.id }, [
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.id, emp.status)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n        " + _vm._s(emp.status) + "\n        "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp)
-                                  }
-                                }
-                              },
-                              [_vm._v("\n          12%\n          ")]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp)
+                              }
+                            }
+                          },
+                          [_vm._v("\n          12%\n          ")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.id, emp.job.price)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(emp.job.price) +
+                                "\n          "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp.id, emp.job.price)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(emp.job.price) +
-                                    "\n          "
-                                )
-                              ]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.job.id, emp.job.name)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(emp.job.name) +
+                                "\n          "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(
-                                      emp.job.id,
-                                      emp.job.name
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(emp.job.name) +
-                                    "\n          "
-                                )
-                              ]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.id, emp.user.phone)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(emp.user.phone) +
+                                "\n          "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp.id, emp.user.phone)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(emp.user.phone) +
-                                    "\n          "
-                                )
-                              ]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.id, emp.user.email)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(emp.user.email) +
+                                "\n          "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp.id, emp.user.email)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(emp.user.email) +
-                                    "\n          "
-                                )
-                              ]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.user.id, emp.user.name)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n          " +
+                                _vm._s(emp.user.name) +
+                                "\n          "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(
-                                      emp.user.id,
-                                      emp.user.name
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(emp.user.name) +
-                                    "\n          "
-                                )
-                              ]
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { colspan: "1" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editPost(emp.id, emp.user.NID)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(emp.user.NID) +
+                                "\n            "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(emp.id, emp.user.NID)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n            " +
-                                    _vm._s(emp.user.NID) +
-                                    "\n            "
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      }),
-                      0
-                    )
-                  : _c(
-                      "tbody",
-                      _vm._l(_vm.result.data, function(res) {
-                        return _c("tr", { key: res.id }, [
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res.id, res.status)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n        " +
-                                    _vm._s(res.status) +
-                                    "\n        "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res)
-                                  }
-                                }
-                              },
-                              [_vm._v("\n          12%\n          ")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res.id, res.job.price)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(res.job.price) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(
-                                      res.job.id,
-                                      res.job.name
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(res.job.name) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res.id, res.user.phone)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(res.user.phone) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res.id, res.user.email)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(res.user.email) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(
-                                      res.user.id,
-                                      res.user.name
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n          " +
-                                    _vm._s(res.user.name) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "1" } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "modal",
-                                  "data-target": "#exampleModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editPost(res.id, res.user.NID)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n            " +
-                                    _vm._s(res.user.NID) +
-                                    "\n            "
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      }),
-                      0
-                    )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
               ])
             ])
           ])
@@ -60616,14 +60306,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/components/ShowEmploye.vue ***!
   \*************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShowEmploye_vue_vue_type_template_id_baf0fe82___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowEmploye.vue?vue&type=template&id=baf0fe82& */ "./resources/js/components/ShowEmploye.vue?vue&type=template&id=baf0fe82&");
 /* harmony import */ var _ShowEmploye_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShowEmploye.vue?vue&type=script&lang=js& */ "./resources/js/components/ShowEmploye.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ShowEmploye_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ShowEmploye_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -60653,7 +60344,7 @@ component.options.__file = "resources/js/components/ShowEmploye.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/components/ShowEmploye.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60723,8 +60414,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fss6s\Desktop\terhal\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fss6s\Desktop\terhal\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ezooa\Desktop\other company\travel_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ezooa\Desktop\other company\travel_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
