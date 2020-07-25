@@ -1,7 +1,7 @@
 <template>
-  <div>
+    <div>
       <v-app>
-           <div class="container">
+ <div class="container">
 
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -18,113 +18,135 @@
                                 :options="optionsArray">
                               </multiselect>
                             </div>
-
-                             <div class="form-group row">
+                            <br>
+                        <div class="form-group row">
                             
                             <div class="col-md-6">
                                 <img src="mail.png" class="img" alt="Avatar">
-                                 <v-text-field label="الإيميل " name="email" type="email"  v-model="job.email"  ></v-text-field>
+
+                                <input id="email" type="email" class="form-control" name="email" v-model="job.email"   placeholder="الإيميل" required autocomplete="email"/>
+
+                             
+
+                              
+
                             </div>
                             <div class="col-md-6 input-container">
                                 <img src="name.png" class="img" alt="Avatar">
-                                 <v-text-field label="الأسم الرباعي " name="name" v-model="job.name" ></v-text-field>
+                                 <v-text-field label="الأسم الرباعي " v-model="job.name" :rules="rules" :value="value"  ></v-text-field>
+
+
+                            
+                        
                             </div>
+                           
+
                         </div>
-                         <div class="form-group row">
+
+                        <div class="form-group row">
                             <div class="col-md-6 input-container">
                                 <img src="date.png" class="img" alt="Avatar">
-                                 <div class="input-group date">
-                                    <v-text-field label="تاريخ إنتهاء الهوية أو الإقامة" :value="job.exp"  v-on:change="onDateChange"  name="exp" type="text"  v-model="job.exp"  id="hijri-date-input2"  ></v-text-field>
-                                     </div>   
-                                    </div>
+
+                                    <input type='text' class="form-control"  v-model="job.exp" name="exp"  id="hijri-date-input5" placeholder="تاريخ إنتهاء الهوية أو الإقامة"/>
+                             
+                                                        </div>
                             <div class="col-md-6 input-container">
                                 <img src="id.png" class="img" alt="Avatar">
-                                    <v-text-field label="رقم الهوية"  name="NID"  v-model="job.NID"    ></v-text-field>
+
+                                <input type="text" class="form-control" name="NID" v-model="job.NID" placeholder="رقم الهوية"/>
                             </div>
                         </div>
+
+                       
+
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <img src="phone.png" class="img" alt="Avatar">
-                            <v-text-field label="رقم الجوال"   v-model="job.phone"   name="phone"  ></v-text-field>
 
+                            <input type="text" class="form-control" name="phone" v-model="job.phone" placeholder="رقم الجوال"/>
                             </div>
                             <div class="col-md-6">
                                 <img src="password.png" class="img" alt="Avatar">
-                            <v-text-field label="كلمة المرور"  type="password"  v-model="job.password"   name="password"  ></v-text-field>
+
+                                
+                                <input id="password" type="password" class="form-control" name="password" v-model="job.password" placeholder="الرقم السري" required autocomplete="new-password"/>
+
+                             
                             </div>
+       					
+
                         </div>
-
-                        <v-file-input show-size counter multiple label="File input"  name="image"  v-model="job.image"></v-file-input>
-                        <v-file-input accept="image/*" label="File input"  v-model="job.image" ></v-file-input>
-
-
-
-                    <div class="form-group row mb-0">
+ 							<form @submit="createJob" enctype="multipart/form-data">
+                  			  <div class="input-group">
+                       				 <div class="custom-file">
+									
+  						<v-file-input  label="File input"  v-on:change="onFileChange"></v-file-input>
+                      				      <input type="file" name="filename" class="custom-file-input" id="inputFileUpload"
+                       				            v-on:change="onFileChange">
+                       				     <label class="custom-file-label" for="inputFileUpload"><p class="text-danger font-weight-bold">{{filename}}</p></label>
+                 				       </div>
+                				    </div>
+                				    <br>
+                				</form>
+								
+									
+  						<v-file-input  label="File input" name="image" type="file"  v-model="job.image"></v-file-input>
+                        <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <br>
 
-                                <div class="my-2">
-                                 <v-btn color="warning"   @click="createJob" dark>Normal Button</v-btn>
-                        </div>
+                                <button type="submit" @click="createJob" class="btn btn-primary" id="btn">
+                                    إنشاء 
+                                </button>
                             </div>
                         </div>
-                        
-
-
-
-
-
-
-
-                </div>
-            </div>
-        </div>
+                         </div>
+    </div> 
+    </div> 
     </div>
-           </div>
 
+     </div>
+								</v-app>
 
-    </v-app>
-  </div>
+    </div>
 </template>
-
 <script>
 import Multiselect from 'vue-multiselect'
 import underscore from 'vue-underscore'
+    var value = null 
+
   export default {
-          components: { Multiselect  },
+
+    components: { Multiselect  },
     props:['value'],
-    data: () => ({
-      rules: [
-        value => !!value || 'Required.',
-        value => (value && value.length >= 3) || 'Min 3 characters',
-      ],
-           job:{
+    data: () => ({    
+        job:{
           id:'',
-          name:'',
+          name:null,
           email:'',
           phone:'',
           NID:'',
           exp:'',
           password:'',
           selected: null,
-          image: [],
+          image: '',
         },
 		filename: 'Choose file',
     	file: '',
         success: '',
         options: [],
         value:null,
+            rules: [
+      name => !!name || 'Required.',
+    name => (name && name.length >= 3) || 'Min 3 characters',
+    ],
+      
     }),
-     methods:{
+    methods:{
 		  onFileChange(e) {
                 //console.log(e.target.files[0]);
                 this.filename = "Selected File: " + e.target.files[0].name;
                 this.file = e.target.files[0];
-            },
-            onDateChange(e) {
-                //console.log(e.target.files[0]);
-                this.job.exp =  e
-               console.log(this.job.exp)
 			},
 			 
       createJob(e){
@@ -152,6 +174,7 @@ import underscore from 'vue-underscore'
                    });
     //    const fd = new FormData();
     //    fd.append('image' , this.image)
+    this.job.name = this.value
         console.log(this.job)
         axios.post('api/createjob',this.job).
         then(response=>{

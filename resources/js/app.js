@@ -14,6 +14,13 @@ import VueRouter from 'vue-router'
 import cr from './components/CreateEmploye'
 import item from'./components/Item.vue'
 import routes from'./routes.js'
+//import Vuetify from "../plugins/vuetify";
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify);
+
+
+
 
 import Swal from 'sweetalert2'
 window.Swal=Swal
@@ -44,7 +51,8 @@ window.Toast=Toast
 
 const app = new Vue({
     el: '#app',
-    router,
+    vuetify: new Vuetify(),
+      router,
     components:{
         item,
         cr

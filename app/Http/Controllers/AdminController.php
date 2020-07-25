@@ -11,6 +11,9 @@ use App\Models\Salary;
 use App\Models\OverSalary;
 use App\Models\UserOver;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -105,40 +108,36 @@ class AdminController extends Controller
     }
   
     protected function createjob(Request $request){//post for api
-        $validator = Validator::make($request->all(),[
-            'exp'=>'required'
-            ]);
-            if ($validator->fails()) {
-                return response()->json(['status'=>'error','errors'=>$validator->errors()]);
-            }
-           // $image[]  = $request->image ; 
-           $image = $request->get('image');
-           $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-           
-           \File::make($request->get('image'))->save(public_path('/images').$name);
-           // $file = $image[1];
-           // $extension = $file->getClientOriginalExtension();
-           // $destination_path= 'files'.'/'.'AZO' . '/' ;
-           // $file_name = 'Background' . '.'. $extension;
-           // $file->move($destination_path, $file_name);
+       $validator = Validator::make($request->all(),[
+           'exp'=>'required'
+           ]);
+           if ($validator->fails()) {
+               return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+           }
+      
+      ///   $file = $request->file('image');
+///
+      ///      $extension = $file->getClientOriginalExtension();
+      ///      $destination_path= 'files'.'/' . '/' ;
+      ///      $file_name =  'Background' . '.'. $extension;
+      ///      $file->move($destination_path, $file_name);
 
-      //  $job=Job::where('name',$request->selected)->first();
-      //  $user=new User;
-      //  $user->name=$request->name;
-      //  $user->email=$request->email;
-      //  $user->NID=$request->NID;
-      //  $user->exp=$request->exp;
-      //  $user->phone=$request->phone;
-      //  $user->password=$request->password;
-      //  $user->role_id=1;
-      //  $user->save();
-      //  $userJob=new UserJob;
-      //  $userJob->user_id= $user->id;
-      //  $userJob->job_id= $job->id;
-      //  $userJob->status=1;
-      //  $userJob->save();
-        //return response()->json(['status'=>'success','data'=>$userJob]);
-        return $request;
+      $job=Job::where('name',$request->selected)->first();
+      $user=new User;
+      $user->name=$request->name;
+      $user->email=$request->email;
+      $user->NID=$request->NID;
+      $user->exp=$request->exp;
+      $user->phone=$request->phone;
+      $user->password=$request->password;
+      $user->role_id=1;
+      $user->save();
+      $userJob=new UserJob;
+      $userJob->user_id= $user->id;
+      $userJob->job_id= $job->id;
+      $userJob->status=1;
+      $userJob->save();
+        return response()->json(['status'=>'success','data'=> $userJob]);
 
         
 
@@ -203,24 +202,15 @@ class AdminController extends Controller
             //return $emp;
         }
 
-    public function store(Request $request)
-    {
-        $file = $request->file('image');
-
-       if($request->get('image'))
-       {
-      
-
-
-          $image = $request->get('image');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          
-          \Image::make($request->get('image'))->save(public_path('/images').$name);
+        public function fileStore(Request $request)
+        {
+            $upload_path = public_path('upload');
+            $file_name = $request->file->getClientOriginalName();
+            $generated_new_name = time() .$file_name. '.' . $request->file->getClientOriginalExtension();
+            $request->file->move($upload_path, $generated_new_name);
+            //$name = $request->file->password ;
+    
+            return response()->json(['success' => 'You have successfully uploaded "' . $request->title . '"']);
         }
-
-      
-
-       return response()->json(['success' => 'You have successfully uploaded an image'], 200);
-     }
 
 }

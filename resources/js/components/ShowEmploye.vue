@@ -147,20 +147,18 @@ export default {
     
     methods:{
       searchemp(){
-          axios.get('api/search'+this.search).then(response=>{       
-          this.employees=response.data;
+        fetch('api/search'+this.search)
+        .then(res => res.json())
+        .then(res => {
+       
+          this.employees=res;
         })
         .catch(err =>{
           console.log(err);
         });
 
         },
-        NameTitle(e){
-          this.Edit.name = this.e
-          console.log(this.Edit);
-
-
-        },
+     
       getPost()
        {
             axios.get('api/getEmp').then(response=>{
@@ -207,12 +205,8 @@ this.employees={
 
 }
 this.getPost()
-
-        }
-      
-        }
-        )
-      },
+}
+      })},
 
     },
     

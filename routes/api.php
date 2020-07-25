@@ -26,5 +26,6 @@ Route::get('/search{name}','AdminController@search');
 
 
 
+Route::post('store_file', 'AdminController@fileStore');
 
 Route::post('image/store','AdminController@store');
